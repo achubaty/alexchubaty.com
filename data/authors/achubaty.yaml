@@ -1,0 +1,56 @@
+schema: hugoblox/author/v1
+slug: achubaty
+is_owner: true
+
+name:
+  display: Alex M Chubaty
+  given: Alex
+  family: Chubaty
+  middle: M
+
+role: Ecologist and simulation modeller
+
+bio: |
+  Dr. Chubaty is an ecologist, simulation modeller, and co-developer of the
+  open source `SpaDES` simulation platform. He completed his PhD at Simon
+  Fraser University modelling host selection in mountain pine beetle (MPB),
+  and postdoctoral research at Université Laval and Natural Resources Canada
+  developing forecasting models of MPB spread.
+
+  He currently operates FOR-CAST Research & Analytics in Calgary, Canada,
+  which supports the development and integration of models simulating forest
+  vegetation dynamics, wildfire, insect disturbance, and wildlife populations
+  to inform decision making for land management and species at risk. He is an
+  advocate for open source, open data, and reproducible workflows.
+
+affiliations:
+  - name: FOR-CAST Research & Analytics
+    url: https://for-cast.ca
+
+interests:
+  - Insect outbreaks
+  - Forest ecology
+  - Cumulative effects
+  - Simulation modelling
+
+education:
+  - degree: PhD in Biological Sciences
+    institution: Simon Fraser University
+    end: 2014-01-01
+  - degree: BSc in Biological Sciences
+    institution: University of Calgary
+    end: 2005-01-01
+
+links:
+  - icon: at-symbol
+    url: mailto:achubaty@for-cast.ca
+    label: E-mail
+  - icon: academicons/google-scholar
+    url: https://scholar.google.com/citations?user=MnxAoasAAAAJ
+  - icon: academicons/orcid
+    url: https://orcid.org/0000-0001-7146-8135
+  - icon: brands/github
+    url: https://github.com/achubaty
+  - icon: hero/document-arrow-down
+    url: uploads/cv.pdf
+    label: CV

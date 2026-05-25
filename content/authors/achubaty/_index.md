@@ -1,70 +1,47 @@
 ---
-# Display name
-name: "Alex M Chubaty"
-
-# Username (this should match the folder name)
+name: Alex M Chubaty
+slug: achubaty
 authors:
 - achubaty
-
-# Is this the primary user of the site?
 superuser: true
-
-# Role/position
-role: "Ecologist and simulation modeller"
-
-# Organizations/Affiliations
+role: Ecologist and simulation modeller
 organizations:
-- name: ""
-  url: "https://alexchubaty.com"
-- name: "FOR-CAST Research & Analytics"
-  url: "https://for-cast.ca"
-
-# Short bio (displayed in user profile at end of posts)
-bio: ""
-
+- name: ''
+  url: https://alexchubaty.com
+- name: FOR-CAST Research & Analytics
+  url: https://for-cast.ca
+bio: ''
 interests:
-- "insect outbreaks"
-- "forest ecology"
-- "cumulative effects"
-- "simulation modelling"
-
+- insect outbreaks
+- forest ecology
+- cumulative effects
+- simulation modelling
 education:
   courses:
-  - course: "PhD in Biological Sciences"
-    institution: "Simon Fraser University"
+  - course: PhD in Biological Sciences
+    institution: Simon Fraser University
     year: 2014
-  - course: "BSc in Biological Sciences"
-    institution: "University of Calgary"
+  - course: BSc in Biological Sciences
+    institution: University of Calgary
     year: 2005
-
-# Social/Academic Networking
-# For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
-#   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
-#   form "mailto:your-email@example.com" or "#contact" for contact widget.
 social:
-- icon: "envelope"
-  icon_pack: "fas"
-  link: '#contact'  # For a direct email link, use "mailto:test@example.org".
-- icon: "google-scholar"
-  icon_pack: "ai"
-  link: "https://scholar.google.com/citations?user=MnxAoasAAAAJ"
-- icon: "orcid"
-  icon_pack: "ai"
-  link: "https://orcid.org/0000-0001-7146-8135"
-- icon: "github"
-  icon_pack: "fab"
-  link: "https://github.com/achubaty"
+- icon: envelope
+  icon_pack: fas
+  link: '#contact'
+- icon: google-scholar
+  icon_pack: ai
+  link: https://scholar.google.com/citations?user=MnxAoasAAAAJ
+- icon: orcid
+  icon_pack: ai
+  link: https://orcid.org/0000-0001-7146-8135
+- icon: github
+  icon_pack: fab
+  link: https://github.com/achubaty
 - icon: cv
   icon_pack: ai
-  link: files/cv.pdf
-
-email: "achubaty@for-cast.ca"
-
-# Organizational groups that you belong to (for People widget)
-#   Set this to `[]` or comment out if you are not using People widget.  
-# user_groups:
-# - Researchers
-# - Visitors
+  link: uploads/cv.pdf
+email: achubaty@for-cast.ca
+user_groups: []
 ---
 
 Dr. Chubaty is an ecologist, simulation modeller, and co-developer of the open source `SpaDES` simulation platform.

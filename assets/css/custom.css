@@ -1,0 +1,35 @@
+/* Match the previous site's dark-mode surfaces (less-dark than HugoBlox default). */
+.dark {
+  --hb-color-background: #23252f;
+  --hb-color-header-bg: #282a36;
+  --hb-color-footer-bg: #1d1f27;
+}
+
+/* Hide the redundant "Send a message" CTA in the contact block —
+   email is already linked above it. The block has no frontmatter knob for this. */
+#contact a[href^="mailto:"].bg-primary-600 {
+  display: none;
+}
+
+/* Hide the page-level Contact h2 — the contact card has its own h3 heading. */
+#contact > .home-section-bg + * h2,
+#contact h2.text-3xl {
+  display: none;
+}
+
+/* Rename the contact-block labels "Click to copy" → "Email" and "Call me" → "Phone".
+   Strings are hardcoded in the block template; swap the visible text via CSS. */
+#contact button.group div p:first-child,
+#contact a[href^="tel:"] div p:first-child {
+  font-size: 0;
+}
+#contact button.group div p:first-child::before {
+  content: "Email";
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+#contact a[href^="tel:"] div p:first-child::before {
+  content: "Phone";
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}

@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# Display available updates to Academic.
-cd themes/academic
-git fetch
-git log --pretty=oneline --abbrev-commit --decorate HEAD..origin/master
-cd ../../
+# Update the HugoBlox theme modules to their latest versions.
+set -euo pipefail
 
-# Update Academic.
-git submodule update --remote --merge
+hugo mod get -u
+hugo mod tidy

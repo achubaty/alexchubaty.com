@@ -1,25 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # If a command fails then the deploy stops
-set -e
+set -euo pipefail
 
 printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
-# Build the project.
-hugo # -F # force draft/future talks to be built too
+# Install JS deps and fetch Hugo modules
+pnpm install --frozen-lockfile
+hugo mod get -u
 
-# Go To Public folder
+# Build the project (production)
+hugo --gc --minify
+pnpm run pagefind
+
+# Push the built site (public/ submodule) to GitHub Pages
 cd public
 
-# Add changes to git.
 git add .
 
-# Commit changes.
 msg="rebuilding site $(date)"
 if [ -n "$*" ]; then
 	msg="$*"
 fi
 git commit -m "$msg"
 
-# Push source and build repos.
 git push origin master

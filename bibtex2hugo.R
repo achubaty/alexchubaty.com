@@ -15,55 +15,50 @@ talks <- read.bib("My_Presentations.bib")
 x <- papers[[1]]
 x <- talks[[1]]
 
-# Publication type.
-# Legend:
-# 0 = Uncategorized
-# 1 = Conference paper
-# 2 = Journal article
-# 3 = Manuscript
-# 4 = Report
-# 5 = Book
-# 6 = Book section
+## CSL publication types used by the HugoBlox academic-cv theme.
+## article-journal | paper-conference | manuscript | report | book | chapter | thesis | patent | uncategorized
+
 bib2hugo.publications <- function(x) {
-  if (!dir.exists("publication")) dir.create("publication")
+  if (!dir.exists("publications")) dir.create("publications")
+  slug <- gsub(":", "", names(x))
+  outDir <- file.path("publications", slug)
+  if (!dir.exists(outDir)) dir.create(outDir)
+  hugoFile <- file.path(outDir, "index.md")
 
-  hugoFile <- file.path("publication", paste0(gsub(":", "", names(x)), ".md"))
+  authors <- paste0("  - \"", paste(x$author, collapse = "\"\n  - \""), "\"")
+  url_pdf <- if (nzchar(x$url %||% "")) x$url else ""
 
-  cat("+++",
-      paste0("title = \"", gsub("\\{|\\}", "", x$title), "\""),
-      paste0("date = \"", x$year, "01", "01", "\""), ## need to manually adjust month and day
-      paste0("draft = false"),
-      paste0("authors = [\"", paste(x$author, collapse = "\", \""), "\"]"),
-      paste0("publication_types = [2]"),
-      paste0("publication = \"", x$journal, "\""),
-      paste0("publication_short = \"\""),
-      paste0("abstract = \"", x$abstract, "\""),
-      paste0("abstract_short = \"\""),
-      paste0("image_preview = \"\""),
-      paste0("selected = false"),
-      paste0("projects = [\"\"]"),
-      paste0("tags = [\"\"]"),
-      paste0("url_pdf = \"", x$url, "\""),
-      paste0("url_preprint = \"\""),
-      paste0("url_code = \"\""),
-      paste0("url_dataset = \"\""),
-      paste0("url_project = \"\""),
-      paste0("url_slides = \"\""),
-      paste0("url_video = \"\""),
-      paste0("url_poster = \"\""),
-      paste0("url_source = \"\""),
-      paste0("math = false"),
-      paste0("highlight = true"),
-      "",
-      paste0("[header]"),
-      paste0("image = \"\""),
-      paste0("caption = \"\""),
-      "",
-      "+++",
-      file = hugoFile,
-      sep = "\n"
+  lines <- c(
+    "---",
+    paste0("title: \"", gsub("\\{|\\}", "", x$title), "\""),
+    paste0("date: \"", x$year, "-01-01\""),  ## manually adjust month/day
+    "draft: false",
+    "authors:",
+    authors,
+    "publication_types:",
+    "  - article-journal",
+    paste0("publication: \"", x$journal %||% "", "\""),
+    "publication_short: \"\"",
+    paste0("abstract: \"", x$abstract %||% "", "\""),
+    "summary: \"\"",
+    "featured: false",
+    "projects: []",
+    "tags: []",
+    "image:",
+    "  caption: \"\"",
+    "  focal_point: \"\"",
+    "  preview_only: false"
   )
+  if (nzchar(url_pdf)) {
+    lines <- c(lines,
+      "links:",
+      "  - type: pdf",
+      paste0("    url: \"", url_pdf, "\"")
+    )
+  }
+  lines <- c(lines, "---", "")
 
+  cat(lines, file = hugoFile, sep = "\n")
   invisible()
 }
 
@@ -71,41 +66,42 @@ purrr::map(papers, bib2hugo.publications)
 
 ################################################################################
 bib2hugo.presentations <- function(x) {
-  if (!dir.exists("talk")) dir.create("talk")
+  if (!dir.exists("talks")) dir.create("talks")
+  hugoFile <- file.path("talks", paste0(gsub(":", "", names(x)), ".md"))
 
-  hugoFile <- file.path("talk", paste0(gsub(":", "", names(x)), ".md"))
+  authors <- paste0("  - \"", paste(x$author, collapse = "\"\n  - \""), "\"")
+  url_pdf <- if (nzchar(x$url %||% "")) x$url else ""
 
-  cat("+++",
-      paste0("title = \"", gsub("\\{|\\}", "", x$title), "\""),
-      paste0("date = \"", x$year, "-01", "-01", "\""), ## need to manually add month and day
-      paste0("draft = false"),
-      paste0("authors = [\"", paste0(x$author, collapse = "\", \""), "\"]"),
-      paste0("#time_start = \"\""),
-      paste0("#time_end = \"\""),
-      paste0("abstract = \"", x$abstract, "\""),
-      paste0("abstract_short = \"\""),
-      paste0("event = \"", x$publisher, "\""),
-      paste0("event_url = \"\""),
-      paste0("location = \"", x$address, "\""),
-      paste0("selected = false"),
-      paste0("projects = [\"\"]"),
-      paste0("tags = [\"\"]"),
-      paste0("url_pdf = \"", x$url, "\""),
-      paste0("url_slides = \"\""),
-      paste0("url_video = \"\""),
-      paste0("url_code = \"\""),
-      paste0("math = false"),
-      paste0("highlight = true"),
-      "",
-      paste0("[header]"),
-      paste0("image = \"\""),
-      paste0("caption = \"\""),
-      "",
-      "+++",
-      file = hugoFile,
-      sep = "\n"
+  lines <- c(
+    "---",
+    paste0("title: \"", gsub("\\{|\\}", "", x$title), "\""),
+    paste0("date: \"", x$year, "-01-01\""),  ## manually add month/day
+    "draft: false",
+    "all_day: true",
+    "authors:",
+    authors,
+    paste0("abstract: \"", x$abstract %||% "", "\""),
+    "summary: \"\"",
+    paste0("event: \"", x$publisher %||% "", "\""),
+    "event_url: \"\"",
+    paste0("location: \"", x$address %||% "", "\""),
+    "selected: false",
+    "projects: []",
+    "tags: []",
+    "image:",
+    "  caption: \"\"",
+    "  focal_point: \"\""
   )
+  if (nzchar(url_pdf)) {
+    lines <- c(lines,
+      "links:",
+      "  - type: pdf",
+      paste0("    url: \"", url_pdf, "\"")
+    )
+  }
+  lines <- c(lines, "---", "")
 
+  cat(lines, file = hugoFile, sep = "\n")
   invisible()
 }
 
